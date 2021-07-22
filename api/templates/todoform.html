@@ -1,0 +1,52 @@
+
+{% extends "base.html" %}
+{% block body %}
+    <div class="center_div">
+      <h1 class="display-4" style="color:white; font-family: Arial, Helvetica, sans-serif; font-size: 40px;">Welcome! {{val}}</h1>
+      <br/>
+      </div>
+     <br/>
+     <br/>
+     </div>
+     <div class="bottom_div">
+      <p style="color:white; font-family: Arial, Helvetica, sans-serif;">
+      <form method = "post" action = "{{url_for('todo.addtodo', id=id)}}">
+      <label for = "todolist" style="color:white; font-family: Arial, Helvetica, sans-serif;">Add your Todo</label>
+      <br/>
+      <input name = "todolist" type = "text" id = "todolist" required/>
+      <br/>
+      <br/>
+      <label for = "Date" style="color:White; font-family: Arial, Helvetica, sans-serif;">Enter the Date</label>
+      <br/>
+      <input name = "date" type = "date" id = "Date" required/>
+      <br/>
+      <br/>
+      <input type = "submit" value = "ADD">
+      <div class="row">
+      <div class="one-half column open-todos">
+        
+        <ul>
+          {% for i in val %}
+            {% if not i[4] %}
+              <li> {{ i[2] }} <input type="checkbox" id="checkbox" data-todo-id="{{ i[0] }}"> {{format_date(i[3])}}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="one-half column finished-todos">
+        <h6 class="docs-header">finished</h6>
+        <ul>
+          {% for i in val %}
+            {% if not i[4] %}
+              <li> {{ i[2] }} <input type="checkbox" id="checkbox" data-todo-id="{{ i[0] }}" checked="checked"> {{i[3]}}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+      </form>
+     
+      
+      </p>
+     </div>
+{% endblock %}
