@@ -1,5 +1,5 @@
-drop table if exists login; 
-drop table if exists todolist;  
+drop table if exists login cascade ; 
+drop table if exists todolist cascade ;  
 
 
 
@@ -10,12 +10,13 @@ CREATE TABLE login (
   );
   
 CREATE TABLE todolist (
-  id SERIAL PRIMARY KEY, 
+  id SERIAL PRIMARY KEY,
+  uid INTEGER ,
   task TEXT  NOT NULL,
-  LASTdate timestamp NOT NULL,
-  CONSTRAINT uid FOREIGN KEY(id) REFERENCES login(id) ON DELETE CASCADE
+  lastdate timestamp NOT NULL,
+  status boolean,
+  CONSTRAINT uid FOREIGN KEY(uid) REFERENCES login(id) ON DELETE CASCADE
   );
-
 
 
 
